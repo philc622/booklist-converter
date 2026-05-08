@@ -91,7 +91,10 @@ def main():
                     started_date = row.get('Started Reading', '')
 
                     date_read = convert_date(finished_date)
-                    date_added = convert_date(started_date)
+                    if not started_date and finished_date:
+                        date_added = date_read
+                    else:
+                        date_added = convert_date(started_date)
 
                     # Exclusive Shelf and Bookshelves logic
                     dnf = row.get('Did Not Finish', '').upper()
